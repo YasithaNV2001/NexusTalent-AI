@@ -228,7 +228,7 @@ export default function CVEditor({ resume, onUpdate }: CVEditorProps) {
             </Button>
             <Button
               size="sm"
-              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white"
+              className="bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white"
               disabled
               title="Export coming in v1"
             >
@@ -268,7 +268,7 @@ export default function CVEditor({ resume, onUpdate }: CVEditorProps) {
               updateDraft((d) => ({ ...d, summary: e.target.value }))
             }
             placeholder="Write a compelling 2-3 sentence summary..."
-            className="bg-slate-800/50 border-slate-700/50 text-white placeholder:text-slate-500 min-h-[80px] focus-visible:border-violet-500 focus-visible:ring-violet-500/20"
+            className="bg-slate-800/50 border-slate-700/50 text-white placeholder:text-slate-500 min-h-20 focus-visible:border-violet-500 focus-visible:ring-violet-500/20"
           />
         </div>
 
@@ -380,7 +380,7 @@ export default function CVEditor({ resume, onUpdate }: CVEditorProps) {
                   onChange={(e) =>
                     handleExperienceChange(idx, 'description', e.target.value)
                   }
-                  className="bg-slate-800/50 border-slate-700/50 text-white text-sm min-h-[60px] focus-visible:border-violet-500 focus-visible:ring-violet-500/20"
+                  className="bg-slate-800/50 border-slate-700/50 text-white text-sm min-h-15 focus-visible:border-violet-500 focus-visible:ring-violet-500/20"
                 />
               </div>
             </motion.div>

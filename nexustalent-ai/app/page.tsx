@@ -21,9 +21,9 @@ export default function LandingPage() {
     <main className="relative bg-slate-950 overflow-x-hidden">
       {/* Ambient background glows */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-violet-600/8 blur-[120px]" />
-        <div className="absolute top-1/3 -left-40 w-[500px] h-[500px] rounded-full bg-indigo-600/6 blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-violet-800/5 blur-[100px]" />
+        <div className="absolute -top-40 -right-40 w-150 h-150 rounded-full bg-violet-600/8 blur-[120px]" />
+        <div className="absolute top-1/3 -left-40 w-125 h-125 rounded-full bg-indigo-600/6 blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-100 h-100 rounded-full bg-violet-800/5 blur-[100px]" />
       </div>
 
       <Navbar />

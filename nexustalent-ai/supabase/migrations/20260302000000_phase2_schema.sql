@@ -56,8 +56,8 @@ CREATE TABLE public.subscriptions (
                                            CHECK (billing_interval IN ('monthly','annual')),
   amount_usd                 NUMERIC(10,2) NOT NULL DEFAULT 0,
   payhere_order_id           TEXT,
-  jd_quota                   INTEGER       NOT NULL DEFAULT 50,
-  cv_per_jd_quota            INTEGER       NOT NULL DEFAULT 200,
+  jd_quota                   INTEGER       NOT NULL DEFAULT 2,
+  cv_per_jd_quota            INTEGER       NOT NULL DEFAULT 10,
   created_at                 TIMESTAMPTZ   NOT NULL DEFAULT now(),
   updated_at                 TIMESTAMPTZ   NOT NULL DEFAULT now()
 );
@@ -230,12 +230,14 @@ AS $$
 DECLARE
   new_sub_id UUID;
 BEGIN
-  INSERT INTO public.subscriptions (user_id, plan, status, trial_ends_at)
+  INSERT INTO public.subscriptions (user_id, plan, status, trial_ends_at, jd_quota, cv_per_jd_quota)
   VALUES (
     NEW.id,
     'trial',
     'active',
-    now() + INTERVAL '7 days'
+    now() + INTERVAL '7 days',
+    2,
+    10
   )
   RETURNING id INTO new_sub_id;
 

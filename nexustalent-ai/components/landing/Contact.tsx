@@ -84,7 +84,7 @@ export default function Contact() {
               { icon: Building2, label: 'Enterprise', value: 'Custom solutions', color: 'text-indigo-400' },
             ].map(({ icon: Icon, label, value, color }) => (
               <div key={label} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
                   <Icon className={`w-5 h-5 ${color}`} />
                 </div>
                 <div>
@@ -172,7 +172,7 @@ export default function Contact() {
               <Button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="w-full sm:w-auto px-8 h-11 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-violet-500/25 transition-all disabled:opacity-50"
+                className="w-full sm:w-auto px-8 h-11 bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-violet-500/25 transition-all disabled:opacity-50"
               >
                 {loading ? (
                   <div className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin mr-2" />

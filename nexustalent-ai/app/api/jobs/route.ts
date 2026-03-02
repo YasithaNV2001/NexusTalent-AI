@@ -99,10 +99,21 @@ export async function PATCH(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { jobId, ...updates } = body
+    const { jobId } = body
 
     if (!jobId) {
       return NextResponse.json({ error: 'Missing jobId.' }, { status: 400 })
+    }
+
+    // Whitelist allowed update fields to prevent field injection
+    const allowedFields = ['title', 'description', 'required_skills', 'experience_years', 'location', 'employment_type', 'status']
+    const updates: Record<string, unknown> = {}
+    for (const key of allowedFields) {
+      if (key in body) updates[key] = body[key]
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return NextResponse.json({ error: 'No valid fields to update.' }, { status: 400 })
     }
 
     const adminClient = createSupabaseAdminClient()

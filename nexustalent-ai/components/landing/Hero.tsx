@@ -81,7 +81,7 @@ export default function Hero() {
         >
           <Button
             size="lg"
-            className="w-full sm:w-auto px-8 h-12 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 transition-all text-base"
+            className="w-full sm:w-auto px-8 h-12 bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 transition-all text-base"
             onClick={() => router.push('/auth/login?mode=signup&role=jobseeker')}
           >
             <FileCheck className="w-5 h-5 mr-2" />
@@ -158,7 +158,7 @@ export default function Hero() {
                     className="flex items-center gap-4 p-3 rounded-lg bg-slate-800/60"
                   >
                     <span className="text-xs text-slate-500 w-4">#{i + 1}</span>
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white">
+                    <div className="w-7 h-7 rounded-full bg-linear-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white">
                       {c.name[0]}
                     </div>
                     <div className="flex-1 text-left">
@@ -168,7 +168,7 @@ export default function Hero() {
                     <div className="flex items-center gap-2">
                       <div className="w-20 h-1.5 rounded-full bg-slate-700">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-violet-500 to-indigo-500"
+                          className="h-full rounded-full bg-linear-to-r from-violet-500 to-indigo-500"
                           style={{ width: `${c.score}%` }}
                         />
                       </div>

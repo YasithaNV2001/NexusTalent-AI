@@ -39,13 +39,40 @@ export async function GET() {
       )
     }
 
-    // Check if trial expired
+    // Check if trial expired — persist to DB for consistency
     if (
       subscription.plan === 'trial' &&
       subscription.trial_ends_at &&
       new Date(subscription.trial_ends_at) < new Date()
     ) {
       subscription.status = 'expired'
+
+      // Persist the expired status to DB so admin metrics and direct queries are accurate
+      const adminClient = createSupabaseAdminClient()
+      await adminClient
+        .from('subscriptions')
+        .update({ status: 'expired' })
+        .eq('id', subscription.id)
+
+      // Log the expiry event (idempotent — only insert if not already logged)
+      const { data: existingEvent } = await adminClient
+        .from('subscription_events')
+        .select('id')
+        .eq('subscription_id', subscription.id)
+        .eq('event_type', 'expired')
+        .limit(1)
+        .single()
+
+      if (!existingEvent) {
+        await adminClient.from('subscription_events').insert({
+          subscription_id: subscription.id,
+          user_id: user.id,
+          event_type: 'expired',
+          from_plan: 'trial',
+          to_plan: null,
+          amount_usd: null,
+        })
+      }
     }
 
     return NextResponse.json({ subscription }, { status: 200 })

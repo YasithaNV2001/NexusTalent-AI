@@ -189,7 +189,7 @@ export default function Pricing() {
               >
                 {tier.is_popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white border-0 shadow-lg shadow-violet-500/30 text-xs px-3">
+                    <Badge className="bg-linear-to-r from-violet-600 to-indigo-600 text-white border-0 shadow-lg shadow-violet-500/30 text-xs px-3">
                       Most Popular
                     </Badge>
                   </div>
@@ -197,7 +197,7 @@ export default function Pricing() {
 
                 {/* Icon + Name */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${tier.iconBg} border border-white/10 flex items-center justify-center`}>
+                  <div className={`w-9 h-9 rounded-lg bg-linear-to-br ${tier.iconBg} border border-white/10 flex items-center justify-center`}>
                     <Icon className={`w-4 h-4 ${tier.iconColor}`} />
                   </div>
                   <h3 className="text-base font-semibold text-white">{tier.name}</h3>
@@ -241,7 +241,7 @@ export default function Pricing() {
                 <ul className="space-y-2 mb-6 flex-1">
                   {tier.features.map((f) => (
                     <li key={f} className="flex items-start gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
                       <span className="text-xs text-slate-400">{f}</span>
                     </li>
                   ))}
@@ -253,9 +253,9 @@ export default function Pricing() {
                   className={cn(
                     'w-full text-sm font-semibold transition-all',
                     tier.is_popular
-                      ? 'bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white shadow-lg shadow-violet-500/25'
+                      ? 'bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white shadow-lg shadow-violet-500/25'
                       : tier.id === 'enterprise'
-                      ? 'bg-gradient-to-r from-amber-600/80 to-yellow-600/80 hover:from-amber-500 hover:to-yellow-500 text-white'
+                      ? 'bg-linear-to-r from-amber-600/80 to-yellow-600/80 hover:from-amber-500 hover:to-yellow-500 text-white'
                       : 'bg-slate-800 hover:bg-slate-700 text-white border border-white/10'
                   )}
                 >

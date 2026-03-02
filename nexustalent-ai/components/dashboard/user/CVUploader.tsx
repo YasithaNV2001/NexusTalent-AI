@@ -20,55 +20,65 @@ export default function CVUploader({ onUploadComplete, jobId = null }: CVUploade
   const [fileName, setFileName] = useState<string | null>(null)
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    const file = acceptedFiles[0]
-    if (!file) return
+    if (!acceptedFiles.length) return
 
     setError(null)
     setSuccess(false)
     setUploading(true)
-    setFileName(file.name)
     setProgress(0)
 
-    // Simulate progress
-    const progressInterval = setInterval(() => {
-      setProgress((p) => Math.min(p + 15, 85))
-    }, 200)
+    const totalFiles = acceptedFiles.length
+    let completed = 0
+    let lastError: string | null = null
 
-    try {
-      const formData = new FormData()
-      formData.append('file', file)
-      if (jobId) formData.append('jobId', jobId)
+    setFileName(
+      totalFiles === 1
+        ? acceptedFiles[0].name
+        : `${totalFiles} files`
+    )
 
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      })
+    for (const file of acceptedFiles) {
+      setFileName(
+        totalFiles === 1
+          ? file.name
+          : `File ${completed + 1} of ${totalFiles}: ${file.name}`
+      )
 
-      clearInterval(progressInterval)
-      const data = await res.json()
+      try {
+        const formData = new FormData()
+        formData.append('file', file)
+        if (jobId) formData.append('jobId', jobId)
 
-      if (!res.ok) {
-        setError(data.error || 'Upload failed.')
-        setUploading(false)
-        setProgress(0)
-        return
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        })
+
+        const data = await res.json()
+
+        if (!res.ok) {
+          lastError = data.error || `Upload failed for ${file.name}`
+        }
+      } catch {
+        lastError = `Network error uploading ${file.name}`
       }
 
-      setProgress(100)
-      setSuccess(true)
-      setTimeout(() => {
-        setUploading(false)
-        setSuccess(false)
-        setFileName(null)
-        setProgress(0)
-        onUploadComplete()
-      }, 1500)
-    } catch {
-      clearInterval(progressInterval)
-      setError('Network error. Please try again.')
-      setUploading(false)
-      setProgress(0)
+      completed++
+      setProgress(Math.round((completed / totalFiles) * 100))
     }
+
+    if (lastError && completed < totalFiles) {
+      setError(lastError)
+    }
+
+    setSuccess(true)
+    setTimeout(() => {
+      setUploading(false)
+      setSuccess(false)
+      setFileName(null)
+      setProgress(0)
+      onUploadComplete()
+    }, 1500)
   }, [jobId, onUploadComplete])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -132,7 +142,7 @@ export default function CVUploader({ onUploadComplete, jobId = null }: CVUploade
                     'h-full rounded-full',
                     success
                       ? 'bg-emerald-500'
-                      : 'bg-gradient-to-r from-violet-500 to-indigo-500'
+                      : 'bg-linear-to-r from-violet-500 to-indigo-500'
                   )}
                   initial={{ width: '0%' }}
                   animate={{ width: `${progress}%` }}

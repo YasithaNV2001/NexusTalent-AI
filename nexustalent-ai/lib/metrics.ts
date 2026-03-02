@@ -33,13 +33,13 @@ export async function getAdminMetrics(): Promise<AdminMetrics> {
 
     supabase
       .from('resumes')
-      .select('owner_id', { count: 'exact' })
+      .select('owner_id')
       .is('job_id', null)
       .gte('created_at', thirtyDaysAgo),
 
     supabase
       .from('jobs')
-      .select('user_id', { count: 'exact' })
+      .select('user_id')
       .gte('created_at', thirtyDaysAgo),
 
     supabase
@@ -112,6 +112,10 @@ export async function getAdminMetrics(): Promise<AdminMetrics> {
   const total_b2c_users = allProfiles.filter((p: any) => p.role === 'jobseeker').length
   const total_b2b_users = allProfiles.filter((p: any) => p.role === 'hr_manager').length
 
+  // Distinct active users (not row counts)
+  const active_b2c_30d = new Set((b2cActiveResult.data ?? []).map((r: { owner_id: string }) => r.owner_id)).size
+  const active_b2b_30d = new Set((b2bActiveResult.data ?? []).map((r: { user_id: string }) => r.user_id)).size
+
   const churned_this_month = churnedResult.count ?? 0
   const active_start_of_month = activeStartMonthResult.count ?? 1
   const churn_rate_percent =
@@ -128,8 +132,8 @@ export async function getAdminMetrics(): Promise<AdminMetrics> {
     new_signups_30d: signups30dResult.count ?? 0,
     new_signups_7d: signups7dResult.count ?? 0,
     new_signups_today: signupsTodayResult.count ?? 0,
-    active_b2c_30d: b2cActiveResult.count ?? 0,
-    active_b2b_30d: b2bActiveResult.count ?? 0,
+    active_b2c_30d,
+    active_b2b_30d,
     churn_rate_percent,
     churned_this_month,
     active_start_of_month,

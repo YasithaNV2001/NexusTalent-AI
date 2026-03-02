@@ -96,7 +96,7 @@ export default function Features() {
               className="group relative p-5 rounded-2xl glass hover:bg-white/8 transition-all duration-300"
             >
               <div
-                className={`w-10 h-10 rounded-xl bg-gradient-to-br ${color} border flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                className={`w-10 h-10 rounded-xl bg-linear-to-br ${color} border flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
               >
                 <Icon className={`w-5 h-5 ${iconColor}`} />
               </div>

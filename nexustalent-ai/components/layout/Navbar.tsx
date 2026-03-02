@@ -74,7 +74,7 @@ export default function Navbar() {
       }
     )
     return () => subscription.unsubscribe()
-  }, [])
+  }, [supabase])
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
@@ -109,10 +109,10 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
               <div className="relative">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg group-hover:shadow-violet-500/30 transition-shadow">
+                <div className="w-8 h-8 rounded-lg bg-linear-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg group-hover:shadow-violet-500/30 transition-shadow">
                   <Zap className="w-4 h-4 text-white fill-white" />
                 </div>
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 blur-md opacity-0 group-hover:opacity-50 transition-opacity" />
+                <div className="absolute inset-0 rounded-lg bg-linear-to-br from-violet-500 to-indigo-600 blur-md opacity-0 group-hover:opacity-50 transition-opacity" />
               </div>
               <span className="font-bold text-lg tracking-tight">
                 Nexus<span className="gradient-text">Talent</span>
@@ -142,7 +142,7 @@ export default function Navbar() {
                     <button className="flex items-center gap-2 rounded-full p-0.5 ring-2 ring-transparent hover:ring-violet-500/50 transition-all">
                       <Avatar className="w-8 h-8">
                         <AvatarImage src={profile.avatar_url ?? undefined} />
-                        <AvatarFallback className="bg-gradient-to-br from-violet-500 to-indigo-600 text-white text-xs font-semibold">
+                        <AvatarFallback className="bg-linear-to-br from-violet-500 to-indigo-600 text-white text-xs font-semibold">
                           {getInitials(profile.full_name)}
                         </AvatarFallback>
                       </Avatar>
@@ -197,7 +197,7 @@ export default function Navbar() {
                   </Button>
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white shadow-lg shadow-violet-500/25 transition-all hover:shadow-violet-500/40"
+                    className="bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white shadow-lg shadow-violet-500/25 transition-all hover:shadow-violet-500/40"
                     onClick={() => router.push('/auth/login?mode=signup')}
                   >
                     Start Free Trial
@@ -243,7 +243,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-3 px-4 py-2">
                       <Avatar className="w-9 h-9">
                         <AvatarImage src={profile.avatar_url ?? undefined} />
-                        <AvatarFallback className="bg-gradient-to-br from-violet-500 to-indigo-600 text-white text-xs">
+                        <AvatarFallback className="bg-linear-to-br from-violet-500 to-indigo-600 text-white text-xs">
                           {getInitials(profile.full_name)}
                         </AvatarFallback>
                       </Avatar>
@@ -260,7 +260,7 @@ export default function Navbar() {
                       </div>
                     </div>
                     <Button
-                      className="w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white"
+                      className="w-full bg-linear-to-r from-violet-600 to-indigo-600 text-white"
                       onClick={() => { router.push(getDashboardRoute(profile.role)); setMobileOpen(false) }}
                     >
                       <LayoutDashboard className="w-4 h-4 mr-2" />
@@ -285,7 +285,7 @@ export default function Navbar() {
                       Login
                     </Button>
                     <Button
-                      className="w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white"
+                      className="w-full bg-linear-to-r from-violet-600 to-indigo-600 text-white"
                       onClick={() => { router.push('/auth/login?mode=signup'); setMobileOpen(false) }}
                     >
                       Start Free Trial

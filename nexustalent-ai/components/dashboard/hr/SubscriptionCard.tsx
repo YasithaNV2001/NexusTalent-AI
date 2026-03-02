@@ -233,7 +233,7 @@ export default function SubscriptionCard() {
           <Button
             size="sm"
             onClick={() => setShowUpgrade(!showUpgrade)}
-            className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-xs"
+            className="bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-xs"
           >
             <Crown className="w-3.5 h-3.5 mr-1.5" />
             {isExpired || isCancelled ? 'Reactivate' : 'Upgrade'}
@@ -347,7 +347,7 @@ export default function SubscriptionCard() {
                                 {plan.name}
                               </span>
                               {plan.popular && (
-                                <Badge className="text-[9px] bg-gradient-to-r from-violet-600 to-indigo-600 text-white border-0">
+                                <Badge className="text-[9px] bg-linear-to-r from-violet-600 to-indigo-600 text-white border-0">
                                   Popular
                                 </Badge>
                               )}
@@ -385,7 +385,7 @@ export default function SubscriptionCard() {
                                 'w-20 text-xs',
                                 isDowngrade
                                   ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                                  : 'bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white'
+                                  : 'bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white'
                               )}
                             >
                               {upgrading ? (

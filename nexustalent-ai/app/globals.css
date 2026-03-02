@@ -69,7 +69,7 @@
 
 @layer utilities {
   .gradient-text {
-    @apply bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent;
   }
   .gradient-border {
     background: linear-gradient(var(--card), var(--card)) padding-box,

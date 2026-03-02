@@ -92,7 +92,7 @@ export default function HowItWorks() {
                 {activeTab === tab && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600"
+                    className="absolute inset-0 rounded-lg bg-linear-to-r from-violet-600 to-indigo-600"
                     transition={{ type: 'spring', bounce: 0.25, duration: 0.4 }}
                   />
                 )}
@@ -124,13 +124,13 @@ export default function HowItWorks() {
               >
                 {/* Connector line */}
                 {i < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-10 left-[calc(50%+3rem)] right-[-calc(50%-3rem)] h-px bg-gradient-to-r from-violet-500/50 to-transparent" />
+                  <div className="hidden md:block absolute top-10 left-[calc(50%+3rem)] right-[-calc(50%-3rem)] h-px bg-linear-to-r from-violet-500/50 to-transparent" />
                 )}
 
                 <div className="relative p-6 rounded-2xl glass hover:bg-white/8 transition-all duration-300 group-hover:glow-sm">
                   <div className="flex items-start gap-4">
-                    <div className="relative flex-shrink-0">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-indigo-500/20 border border-violet-500/20 flex items-center justify-center group-hover:from-violet-500/30 group-hover:to-indigo-500/30 transition-all">
+                    <div className="relative shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-linear-to-br from-violet-500/20 to-indigo-500/20 border border-violet-500/20 flex items-center justify-center group-hover:from-violet-500/30 group-hover:to-indigo-500/30 transition-all">
                         <Icon className="w-5 h-5 text-violet-400" />
                       </div>
                       <span className="absolute -top-2 -right-2 text-xs font-bold text-violet-500">

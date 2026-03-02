@@ -79,7 +79,7 @@ export default function Testimonials() {
 
               <div className="flex items-center gap-3">
                 <div
-                  className={`w-9 h-9 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center text-xs font-bold text-white flex-shrink-0`}
+                  className={`w-9 h-9 rounded-full bg-linear-to-br ${t.color} flex items-center justify-center text-xs font-bold text-white shrink-0`}
                 >
                   {t.avatar}
                 </div>

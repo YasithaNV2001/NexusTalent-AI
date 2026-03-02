@@ -314,7 +314,7 @@ function LoginForm() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-violet-600/10 blur-[120px]" />
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-indigo-600/10 blur-[120px]" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-violet-500/20 to-transparent" />
       </div>
 
       <motion.div
@@ -326,13 +326,13 @@ function LoginForm() {
         {/* Logo */}
         <Link href="/" className="flex items-center justify-center gap-2 mb-8 group">
           <div className="relative">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg group-hover:shadow-violet-500/30 transition-shadow">
+            <div className="w-10 h-10 rounded-xl bg-linear-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg group-hover:shadow-violet-500/30 transition-shadow">
               <Zap className="w-5 h-5 text-white fill-white" />
             </div>
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 blur-lg opacity-0 group-hover:opacity-40 transition-opacity" />
+            <div className="absolute inset-0 rounded-xl bg-linear-to-br from-violet-500 to-indigo-600 blur-lg opacity-0 group-hover:opacity-40 transition-opacity" />
           </div>
           <span className="font-bold text-xl tracking-tight text-white">
-            Nexus<span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">Talent</span>
+            Nexus<span className="bg-linear-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">Talent</span>
           </span>
         </Link>
 
@@ -353,7 +353,7 @@ function LoginForm() {
               {mode === 'login' && (
                 <motion.div
                   layoutId="mode-bg"
-                  className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-lg shadow-lg"
+                  className="absolute inset-0 bg-linear-to-r from-violet-600 to-indigo-600 rounded-lg shadow-lg"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
                 />
               )}
@@ -372,7 +372,7 @@ function LoginForm() {
               {mode === 'signup' && (
                 <motion.div
                   layoutId="mode-bg"
-                  className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-lg shadow-lg"
+                  className="absolute inset-0 bg-linear-to-r from-violet-600 to-indigo-600 rounded-lg shadow-lg"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
                 />
               )}
@@ -569,7 +569,7 @@ function LoginForm() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full h-11 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all"
+              className="w-full h-11 bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all"
               disabled={loading || googleLoading}
             >
               {loading ? (

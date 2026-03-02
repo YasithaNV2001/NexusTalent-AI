@@ -36,6 +36,7 @@ export default function HRDashboardShell({ profile }: HRDashboardShellProps) {
   const [jobs, setJobs] = useState<Job[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedJob, setSelectedJob] = useState<Job | null>(null)
+  const [uploadRefreshKey, setUploadRefreshKey] = useState(0)
   const router = useRouter()
   const supabase = createSupabaseBrowserClient()
 
@@ -79,11 +80,11 @@ export default function HRDashboardShell({ profile }: HRDashboardShellProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button onClick={() => router.push('/')} className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-linear-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white fill-white" />
               </div>
               <span className="font-bold text-lg tracking-tight text-white hidden sm:block">
-                Nexus<span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">Talent</span>
+                Nexus<span className="bg-linear-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">Talent</span>
               </span>
             </button>
             <div className="h-6 w-px bg-slate-800 hidden sm:block" />
@@ -101,7 +102,7 @@ export default function HRDashboardShell({ profile }: HRDashboardShellProps) {
             </div>
             <Avatar className="w-8 h-8">
               <AvatarImage src={profile.avatar_url ?? undefined} />
-              <AvatarFallback className="bg-gradient-to-br from-violet-500 to-indigo-600 text-white text-xs font-semibold">
+              <AvatarFallback className="bg-linear-to-br from-violet-500 to-indigo-600 text-white text-xs font-semibold">
                 {getInitials(profile.full_name)}
               </AvatarFallback>
             </Avatar>
@@ -136,7 +137,7 @@ export default function HRDashboardShell({ profile }: HRDashboardShellProps) {
                 </div>
                 <Button
                   onClick={() => setView('create-job')}
-                  className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white"
+                  className="bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   New Job
@@ -291,11 +292,11 @@ export default function HRDashboardShell({ profile }: HRDashboardShellProps) {
               {/* Bulk uploader */}
               <div>
                 <h3 className="text-sm font-semibold text-slate-300 mb-3">Upload Candidate CVs</h3>
-                <CVUploader jobId={selectedJob.id} onUploadComplete={() => {}} />
+                <CVUploader jobId={selectedJob.id} onUploadComplete={() => setUploadRefreshKey((k) => k + 1)} />
               </div>
 
               {/* Candidate ranking table */}
-              <CandidateTable jobId={selectedJob.id} />
+              <CandidateTable jobId={selectedJob.id} key={`candidates-${selectedJob.id}-${uploadRefreshKey}`} />
             </motion.div>
           )}
         </AnimatePresence>

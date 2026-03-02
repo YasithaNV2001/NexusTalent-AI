@@ -206,7 +206,7 @@ export default function JobForm({ onSuccess }: JobFormProps) {
         <Button
           type="submit"
           disabled={submitting}
-          className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white px-6"
+          className="bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white px-6"
         >
           {submitting ? (
             <>
